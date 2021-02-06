@@ -1,0 +1,70 @@
+
+<section class="stories-section page-width wow fadeInUp" data-wow-delay="0.05s">
+    <div class="heading-wrapper">
+        <h2>Stories</h2>
+    </div>
+    {% assign block_collection = collections[block.settings.collection] %}
+    <div class="section-tabs-and-content">
+        <div id="exTab2" class="">	
+            <div class="tab-content">
+                {% for block in section.blocks %}
+                    {% assign block_collection = collections[block.settings.collection] %}
+                    <div class="tab-pane {% if forloop.index == 1 %}active{% endif %}" id="{{block_collection.handle}}">
+                        <div class="{{block_collection.handle}} js-slick-mobile">
+                            {% assign counter = 0 %}
+                            {% for product in block_collection.products %}
+                               
+                                <div class="col-12 col-xl-4 p-0">
+                                  <div class="stories-product-card">
+                                      <a href="{{product.url}}">
+                                          <div class="img_wrapper">
+                                                  <img src="{{product.featured_image.src | img_url: '420x'}}" />
+                                          </div>
+                                      </a>
+                                      <div class="product-card-content">
+                                          <a href="{{product.url}}">
+                                              <h3>{{product.title}}</h3>
+                                          </a>
+                                      </div>
+                                  </div>
+                              </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+  </section>
+  
+  {% schema %}
+  {
+    "name": "Stories",
+    "settings": [
+        {
+            "type": "text",
+            "id": "section_heading",
+            "label": "Section Heading"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "collection",
+            "name": "Collection",
+            "settings": [
+                {
+                    "type": "collection",
+                    "id": "collection",
+                    "label": "Choose Collection"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "category": "Stories",
+            "name": "Stories"
+        }
+    ]
+  }
+  {% endschema %}

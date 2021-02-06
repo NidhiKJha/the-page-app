@@ -1,0 +1,100 @@
+<section class="home-banner-section">
+    {% for block in section.blocks %}
+        <div class="row">
+            <div class="col-12">
+                <a href="{{block.settings.banner_cta_link}}">
+                {% if block.settings.banner_image_desktop != blank %}
+                    <div class="home-banner-image-wrapper-desktop d-none d-xl-block">
+                        <img src="{{block.settings.banner_image_desktop | img_url: 'master'}}" />
+                    </div>
+                {% endif %}
+                {% if block.settings.banner_image_ipad != blank %}
+                    <div class="home-banner-image-wrapper-ipad d-none d-md-block d-xl-none">
+                        <img src="{{block.settings.banner_image_ipad | img_url: 'master'}}" />
+                    </div>
+                {% endif %}
+                {% if block.settings.banner_image_mobile != blank %}
+                    <div class="home-banner-image-wrapper-mobile d-block d-md-none">
+                        <img src="{{block.settings.banner_image_mobile | img_url: 'master'}}" />
+                    </div>
+                {% endif %}
+                </a>
+            </div>
+        </div>
+        <div class="center-banner-heading-content-wrapper">
+            <h1 class="home-banner-heading-1">Layer Up</h1>
+            <p class="home-banner-subheading">{{block.settings.banner_subheading}}</p>
+
+        </div>
+        <div class="hero-banner-cta-1">
+            <button href="{{block.settings.banner_cta_link_left}}" class="home-banner-cta-left">{{block.settings.banner_cta_text_left}}</button>
+            <button href="{{block.settings.banner_cta_link_right}}" class="home-banner-cta-right">{{block.settings.banner_cta_text_right}}</button>
+        </div>
+    {% endfor %}
+</section>
+{% schema %}
+{
+"name": "HomePage Banner",
+"settings": [
+],
+"blocks": [
+{
+    "type": "logo",
+    "name": "Home Page Banner",
+    "settings": [
+        {
+            "type": "image_picker",
+            "id": "banner_image_desktop",
+            "label": "Banner Image Desktop"
+        },
+        {
+            "type": "image_picker",
+            "id": "banner_image_ipad",
+            "label": "Banner Image Ipad"
+        },
+        {
+            "type": "image_picker",
+            "id": "banner_image_mobile",
+            "label": "Banner Image Mobile"
+        },
+        {
+            "type": "text",
+            "id": "banner_heading",
+            "label": "Banner Heading"
+        },
+        {
+            "type": "text",
+            "id": "banner_subheading",
+            "label": "Banner Sub Heading"
+        },
+        {
+            "type": "text",
+            "id": "banner_cta_text_left",
+            "label": "Button Text left"
+        },
+        {
+            "type": "url",
+            "id": "banner_cta_link_left",
+            "label": "Button Link left"
+        },
+        {
+            "type": "text",
+            "id": "banner_cta_text_right",
+            "label": "Button Text_right"
+        },
+        {
+            "type": "url",
+            "id": "banner_cta_link_right",
+            "label": "Button Link right"
+        }
+    ]
+}
+],
+"presets": [
+{
+"category": "HomePage",
+"name": "Center Banner"
+}
+]
+}
+{% endschema %}
